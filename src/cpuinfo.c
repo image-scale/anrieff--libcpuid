@@ -210,7 +210,8 @@ static const char* feature_names[] = {
     "aperfmperf", "avx2", "bmi1", "bmi2", "hle", "rtm",
     "avx512f", "avx512dq", "avx512pf", "avx512er", "avx512cd", "sha_ni",
     "avx512bw", "avx512vl", "sgx", "rdseed", "adx", "avx512vnni",
-    "avx512vbmi", "avx512vbmi2", "hypervisor"
+    "avx512vbmi", "avx512vbmi2", "hypervisor",
+    "fsgsbase", "erms", "invpcid", "vaes", "vpclmulqdq", "avx512bitalg"
 };
 
 const char* cpuinfo_feature_str(cpu_feature_t feature)
@@ -368,8 +369,9 @@ static void detect_features(struct cpu_raw_data_t* raw, struct cpu_id_t* id)
         uint32_t ecx7 = raw->basic[7][REG_ECX];
 
         static const struct feat_map leaf7_ebx[] = {
-            {  3, FEAT_BMI1 },    {  5, FEAT_AVX2 },    {  8, FEAT_BMI2 },
-            {  4, FEAT_HLE },     { 11, FEAT_RTM },
+            {  0, FEAT_FSGSBASE }, {  3, FEAT_BMI1 },    {  5, FEAT_AVX2 },
+            {  8, FEAT_BMI2 },    {  4, FEAT_HLE },     { 11, FEAT_RTM },
+            {  9, FEAT_ERMS },    { 10, FEAT_INVPCID },
             { 16, FEAT_AVX512F }, { 17, FEAT_AVX512DQ },{ 18, FEAT_RDSEED },
             { 19, FEAT_ADX },     { 26, FEAT_AVX512PF },{ 27, FEAT_AVX512ER },
             { 28, FEAT_AVX512CD },{ 29, FEAT_SHA },     { 30, FEAT_AVX512BW },
@@ -377,7 +379,8 @@ static void detect_features(struct cpu_raw_data_t* raw, struct cpu_id_t* id)
         };
         static const struct feat_map leaf7_ecx[] = {
             {  1, FEAT_AVX512VBMI }, { 6, FEAT_AVX512VBMI2 },
-            { 11, FEAT_AVX512VNNI },
+            {  8, FEAT_VAES },       { 10, FEAT_VPCLMULQDQ },
+            { 11, FEAT_AVX512VNNI }, { 12, FEAT_AVX512BITALG },
         };
 
         match_feature_bits(leaf7_ebx, (int)(sizeof(leaf7_ebx)/sizeof(leaf7_ebx[0])),
