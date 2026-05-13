@@ -243,4 +243,7 @@ const char* cpuinfo_feature_str(cpu_feature_t feature);
 
 int cpuinfo_get_total_cpus(void);
 
+int cpuinfo_serialize_raw(struct cpu_raw_data_t* raw, const char* filename);
+int cpuinfo_deserialize_raw(struct cpu_raw_data_t* raw, const char* filename);
+
 #endif /* CPUINFO_H */
