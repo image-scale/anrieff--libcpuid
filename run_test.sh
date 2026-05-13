@@ -8,3 +8,4 @@ gcc -Wall -Wextra -std=c99 -o tests/test_features tests/test_features.c src/cpui
 gcc -Wall -Wextra -std=c99 -o tests/test_serialize tests/test_serialize.c src/cpuinfo.c src/serialize.c -I src && ./tests/test_serialize
 gcc -Wall -Wextra -std=c99 -o tests/test_codename tests/test_codename.c src/cpuinfo.c src/serialize.c src/cpudb.c -I src && ./tests/test_codename
 gcc -Wall -Wextra -std=c99 -o tests/test_cache tests/test_cache.c src/cpuinfo.c src/serialize.c src/cache.c -I src && ./tests/test_cache
+gcc -Wall -Wextra -std=c99 -o tests/test_clock tests/test_clock.c src/cpuinfo.c src/serialize.c src/clock.c -I src && ./tests/test_clock
