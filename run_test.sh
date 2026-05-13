@@ -1,6 +1,6 @@
 #!/bin/bash
 set -eo pipefail
 cd "$(dirname "$0")"
-# Update this script as you add test files.
-# It must run ALL tests and exit 0 on success, non-zero on failure.
-exit 0
+
+# Build and run all tests
+gcc -Wall -Wextra -std=c99 -o tests/test_identify tests/test_identify.c src/cpuinfo.c -I src && ./tests/test_identify
